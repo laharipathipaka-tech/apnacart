@@ -1,0 +1,66 @@
+{% extends "store/base.html" %}
+
+{% block content %}
+<style>
+    .register-box {
+        width: 420px;
+        margin: 80px auto;
+        padding: 25px;
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 4px;
+    }
+    button {
+        width: 100%;
+        padding: 10px;
+        background: #2874f0;
+        color: white;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+    button:hover {
+        background: #0b5ed7;
+    }
+    .msg {
+        color: red;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .link {
+        text-align: center;
+        margin-top: 15px;
+    }
+</style>
+
+<div class="register-box">
+    <h2>Create Account</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="msg">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+
+    <div class="link">
+        Already have an account?
+        <a href="{% url 'login' %}">Login</a>
+    </div>
+</div>
+{% endblock %}

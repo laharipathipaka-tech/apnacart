@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Group Buy - ApnaCart</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        .group-info { background: #f9f9f9; padding: 20px; border-radius: 5px; margin: 20px 0; }
+        .group-info p { margin: 10px 0; font-size: 16px; }
+        button { padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #218838; }
+        a { color: #007bff; text-decoration: none; margin-top: 20px; display: inline-block; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h2>Group Buy - {{ group.product.name }}</h2>
+
+    <div class="group-info">
+        <p><strong>Product:</strong> {{ group.product.name }}</p>
+        <p><strong>Original Price:</strong> ₹{{ group.original_price }}</p>
+        <p><strong>Current Price:</strong> ₹{{ group.current_price }}</p>
+        <p><strong>Minimum Group Size:</strong> {{ group.minimum_group_size }}</p>
+        <p><strong>Current Interested Users:</strong> {{ group.interested_users.count }}</p>
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Join Group Buy</button>
+    </form>
+
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monthly Budget - ApnaCart</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        form { background: #f9f9f9; padding: 20px; border-radius: 5px; width: 300px; }
+        input { padding: 10px; width: 100%; margin-bottom: 10px; box-sizing: border-box; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; width: 100%; }
+        button:hover { background: #0056b3; }
+        .current-budget { margin-top: 30px; padding: 15px; background: #e9ecef; border-radius: 5px; }
+        a { color: #007bff; text-decoration: none; display: inline-block; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Monthly Budget</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="amount">Enter Budget Amount (₹):</label>
+        <input type="number" id="amount" name="amount" placeholder="Budget" required step="0.01" min="0">
+        <button type="submit">Save Budget</button>
+    </form>
+
+    {% if budget %}
+    <div class="current-budget">
+        <p><strong>Current Monthly Budget:</strong> ₹{{ budget.monthly_limit }}</p>
+    </div>
+    {% endif %}
+
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>
